@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>ListTitle</h1>
+    <ul>
+        <% newListItems.forEach(function(item) { %>
+            <li>
+                <%= item.name %>
+                <form action="/delete/<%= item._id %>?_method=DELETE" method="POST" style="display: inline; position: absolute;
+                left: 200px;">
+                    <input type="submit" value="Delete">
+                </form>
+                <form action="/edit/<%= item._id %>" method="GET" style="display: inline; position: absolute; left: 280px;">
+                    <input type="submit" value="Edit">
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+    <form action="/" method="POST">
+        <input type="text" name="newItem" placeholder="New item" required>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
